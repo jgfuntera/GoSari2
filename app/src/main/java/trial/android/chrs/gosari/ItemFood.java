@@ -3,7 +3,7 @@ package trial.android.chrs.gosari;
 /**
  * Created by greg on 4/25/16.
  */
-public class FoodItems {
+public class ItemFood {
 
 
     private String pk;
@@ -12,13 +12,14 @@ public class FoodItems {
     private String price;
     private String description;
     private String count;
+    private String deliverytime;
     private String archived;
 
-    FoodItems(){
+    ItemFood(){
 
     }
 
-    public FoodItems(String pk,String pk_categories,String items,String price,String description,String count,String archived){
+    public ItemFood(String pk, String pk_categories, String items, String price, String description, String count, String archived,String deliverytime){
         super();
         this.pk=pk;
         this.pk_categories=pk_categories;
@@ -27,6 +28,7 @@ public class FoodItems {
         this.description=description;
         this.count=count;
         this.archived=archived;
+        this.deliverytime=deliverytime;
     }
 
 
@@ -84,6 +86,14 @@ public class FoodItems {
 
     public void setCount(String count) {
         this.count = count;
+    }
+
+    public String getDeliverytime() {
+        return deliverytime;
+    }
+
+    public void setDeliverytime(String deliverytime) {
+        this.deliverytime = deliverytime;
     }
 
 

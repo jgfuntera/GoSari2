@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="20dip"
+>
+
+
+
+    <TextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:textColor="#372c24"
+          android:text="Mobile Number"/>
+
+    <EditText
+          android:id="@+id/etPhoneNum"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dip"
+          android:layout_marginBottom="20dip"
+          android:inputType="phone"
+          android:digits="1234567890"
+          android:maxLength="11"/>
+
+    <TextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:textColor="#372c24"
+          android:text="Name"/>
+
+
+
+    <EditText
+              android:id="@+id/etName"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dip"
+              android:layout_marginBottom="20dip"
+              android:singleLine="true"/>
+
+
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:textColor="#372c24"
+              android:text="Email"/>
+
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="20dip"
+        android:singleLine="true"/>
+
+
+
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:textColor="#372c24"
+              android:text="Location"/>
+
+
+
+    <EditText
+              android:id="@+id/etLocation"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="5dip"
+              android:layout_marginBottom="20dip"
+              android:singleLine="true"/>
+
+
+    <Button android:id="@+id/btnRegister"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="DONE"/>
+
+
+</LinearLayout>

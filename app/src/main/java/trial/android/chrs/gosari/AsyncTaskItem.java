@@ -1,5 +1,6 @@
 package trial.android.chrs.gosari;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import org.json.JSONException;
@@ -11,13 +12,26 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
     String url;
 
+    private ProgressDialog dialog;
+
+    public AsyncTaskItem(ViewFood activity) {
+        dialog = new ProgressDialog(activity);
+    }
+    @Override
+    protected void onPreExecute() {
+        dialog.setTitle("GoSari");
+        dialog.setMessage("Loading items, please wait...");
+        dialog.show();
+    }
+
+
     @Override
     protected JSONObject doInBackground(String... args) {
         JSONParser jParser = new JSONParser();
 
         switch (UrlChoice) {
             case 1:
-                url = "http://192.168.1.16/shop/FUNCTIONS/categories/list.php";
+                url = "http://192.168.1.11/shop/FUNCTIONS/categories/list.php";
                 break;
             case 2:
                 url = "http://192.168.1.16/shop/FUNCTIONS/categories/list.php";
@@ -39,7 +53,9 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
             ViewNonFood.message = json.toString();
         }
 
+        dialog.dismiss();
         ViewFood.adapter.notifyDataSetChanged();
+
 
         try {
             ViewFood.message = json.getString("msg");
@@ -52,6 +68,7 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
                 //foods.setDescription(c.getString("description"));
                 foods.setArchived(c.getString("archived"));
                 ViewFood.foodList.add(foods);
+
             }
 
 

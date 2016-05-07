@@ -14,6 +14,7 @@ public class ItemCategory {
     public ItemCategory(){
 
     }
+
     public ItemCategory(String pk, String category,String archived){
         super();
         this.pk=pk;

@@ -25,7 +25,7 @@ public class ViewFood extends AppCompatActivity {
 
     public static String message;
 
-    Button AddItem;
+    Button ViewCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +36,19 @@ public class ViewFood extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
-        AddItem=(Button)findViewById(R.id.btnCart);
+        ViewCart=(Button)findViewById(R.id.btnCart);
 
-        AddItem.setOnClickListener(new View.OnClickListener() {
+        ViewCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
+                ShowCartItem();
             }
         });
 
         foodList = new ArrayList<ItemCategory>();
 
-        new AsyncTaskItem().execute();
+        new AsyncTaskItem(this).execute();
 
         ListView listview=(ListView)findViewById(R.id.list);
 
@@ -60,16 +60,15 @@ public class ViewFood extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-               // Toast.makeText(getApplicationContext(),foodList.get(position).getPk(),Toast.LENGTH_SHORT).show();
                 int test=Integer.parseInt(foodList.get(position).getPk());
                 int testchoice=test;
 
                 switch (testchoice){
-                    case 1:AsyncTaskFoodItem.url="http://192.168.1.16/shop/api/items/list.php?categories_pk=1&archived=false";break;
-                    case 2:AsyncTaskFoodItem.url="http://192.168.1.16/shop/api/items/list.php?categories_pk=2&archived=false";break;
-                    case 3:AsyncTaskFoodItem.url="http://192.168.1.16/shop/api/items/list.php?categories_pk=3&archived=false";break;
-                    case 4:AsyncTaskFoodItem.url="http://192.168.1.16/shop/api/items/list.php?categories_pk=4&archived=false";break;
-                    case 5:AsyncTaskFoodItem.url="http://192.168.1.16/shop/api/items/list.php?categories_pk=5&archived=false";break;
+                    case 1:AsyncTaskFoodItem.url="http://192.168.1.11/shop/api/items/list.php?categories_pk=1&archived=false";break;
+                    case 2:AsyncTaskFoodItem.url="http://192.168.1.11/shop/api/items/list.php?categories_pk=2&archived=false";break;
+                    case 3:AsyncTaskFoodItem.url="http://192.168.1.11/shop/api/items/list.php?categories_pk=3&archived=false";break;
+                    case 4:AsyncTaskFoodItem.url="http://192.168.1.11/shop/api/items/list.php?categories_pk=4&archived=false";break;
+                    case 5:AsyncTaskFoodItem.url="http://192.168.1.11/shop/api/items/list.php?categories_pk=5&archived=false";break;
                 }
 
                 Intent ShowFoodItem = new Intent(getApplicationContext(),ViewFoodItems.class);
@@ -78,6 +77,13 @@ public class ViewFood extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void ShowCartItem(){
+
+        Intent showCartItem = new Intent(getApplicationContext(),ViewCart.class);
+        startActivity(showCartItem);
 
     }
 

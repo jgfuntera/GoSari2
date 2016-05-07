@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="4dp">
+
+
+    <TextView
+        android:id="@+id/tvPk_ChkOut_Items"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="PK"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:id="@+id/tvPk__ChkOut_Items_Categories"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Categories_PK"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_ChkOut_Items"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textStyle="italic"
+        android:text="Items"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tv_ChkOut_Price_Items"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Price"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_ChkOut_Count"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Count:"
+        android:textSize="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_ChkOut_Date"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Date:"
+        android:textSize="20dp"
+
+        />
+
+</LinearLayout>
+
+
+
+
+
+
+
+

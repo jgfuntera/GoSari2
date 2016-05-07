@@ -29,7 +29,7 @@ public class ViewNonFood extends AppCompatActivity {
 
         AsyncTaskItem.UrlChoice=2;
 
-        new AsyncTaskItem().execute();
+        //new AsyncTaskItem().execute();
 
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 

@@ -17,10 +17,10 @@
             >
         </ListView>
         <Button
-            android:id="@+id/btnCart"
+            android:id="@+id/btnCart2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ITEMS" />
+            android:text="CART" />
 
 </LinearLayout>
 

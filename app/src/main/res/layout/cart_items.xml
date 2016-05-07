@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ViewFood">
+    >
 
     <TextView
-        android:id="@+id/tvNonFoodCategory"
+        android:id="@+id/tvCart_Title"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="NON-FOOD"
+        android:text="CART"
         android:textSize="50dp"
         />
     <LinearLayout
@@ -21,18 +21,40 @@
 
 
         <ListView
-            android:id="@+id/list2"
+            android:id="@+id/list_cart"
             android:layout_height="fill_parent"
             android:layout_width="match_parent"
-            tools:listitem="@layout/row"
-            android:layout_weight="1.0"
-            >
+            android:layout_weight="1.0">
         </ListView>
+
+        <TextView
+            android:id="@+id/tvTotalItems"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="#ITEMS: "
+            android:textSize="20dp"
+
+            />
+
+        <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="TOTAL PRICE: "
+                android:textSize="20dp"
+            />
+
         <Button
-            android:id="@+id/btnCart2"
+            android:id="@+id/btnCheckout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CART" />
+            android:text="CHECK OUT"
+            android:textSize="30dp"/>
+
     </LinearLayout>
 </LinearLayout>
+
+
+
+
 

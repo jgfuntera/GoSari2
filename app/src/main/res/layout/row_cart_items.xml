@@ -5,24 +5,19 @@
     android:orientation="vertical"
     android:padding="4dp">
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        >
 
-        <ImageView
-            android:id="@+id/ivItem"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            />
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            >
             <TextView
-                android:id="@+id/tvPk_Items"
+                android:id="@+id/tvCart_Id"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textStyle="normal"
+                android:text="ID: "
+                android:textSize="10dp"
+                android:padding="10dp"/>
+
+
+            <TextView
+                android:id="@+id/tvPk_Cart_Items"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="PK"
@@ -30,7 +25,7 @@
                 android:textSize="10dp"
                 />
             <TextView
-                android:id="@+id/tvPk_Items_Categories"
+                android:id="@+id/tvPk_Cart_Items_Categories"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Categories_PK"
@@ -39,38 +34,49 @@
                 />
 
 
-        </LinearLayout>
-    </LinearLayout>
+
 
     <TextView
-        android:id="@+id/tvItem"
+        android:id="@+id/tvCart_Items"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textStyle="italic"
         android:text="Category"
         android:textSize="30dp"
         android:textColor="@color/colorPrimary" />
-    <TextView
-        android:id="@+id/tvPrice_Items"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Pirce"
-        android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/tvDescription_Items"
+        android:id="@+id/tvCart_Description_Items"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="Description"
         android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/tvDeliveryTime_Items"
+        android:id="@+id/tvCart_Price_Items"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Delivery Time"
-        android:textSize="20dp"
+        android:text="Price"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/tvCart_Count"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Count:"
+        android:textSize="15dp"
+
         />
+
+    <TextView
+        android:id="@+id/tvCart_DeliveryTime"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Delivery Time:"
+        android:textSize="20dp"
+
+        />
+
 
 </LinearLayout>
 
