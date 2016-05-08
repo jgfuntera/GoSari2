@@ -359,11 +359,13 @@ public class ViewCart extends AppCompatActivity {
         btnsetdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              final Calendar c = Calendar.getInstance();
+              /*final Calendar c = Calendar.getInstance();
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
                 Log.e("MESSAGE:","ERROR STARTS HERE-->testdialog();");
+                testdialog();
+                indate.setText(date);*/
                 testdialog();
 
 
@@ -377,7 +379,6 @@ public class ViewCart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
-                c.set(2014, 0, 1);
 
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
@@ -429,23 +430,37 @@ public class ViewCart extends AppCompatActivity {
 
     }
 
-    public void testdialog(){
+    public void testdialog() {
 
-        final CustomDatePickerDialog pickerDialog = new CustomDatePickerDialog(this,
-                myDateListener, mYear, mMonth, mDay);
-        pickerDialog.setMaxDate(System.currentTimeMillis());
-        pickerDialog.show();
+        Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
+            }
+        },mYear, mMonth, mDay);
+
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+
+        c.add(Calendar.MONTH, +1);
+        c.add(Calendar.DAY_OF_WEEK,-17);
+        long oneMonthAhead = c.getTimeInMillis();
+        datePicker.setMaxDate(oneMonthAhead);
+        datePicker.setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
+
     }
 
-    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-
-        }
-    };
-
-
 }
+
+
+
 
 
 

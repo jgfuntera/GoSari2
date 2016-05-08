@@ -15,6 +15,10 @@ public class CustomDatePickerDialog extends DatePickerDialog {
     int maxMonth;
     int maxDay;
 
+    int minYear;
+    int minMonth;
+    int minDay;
+
     public CustomDatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
         super(context, callBack, year, monthOfYear, dayOfMonth);
     }
@@ -27,8 +31,16 @@ public class CustomDatePickerDialog extends DatePickerDialog {
             c.setTimeInMillis(maxDate);
             maxYear = c.get(Calendar.YEAR);
             maxMonth = c.get(Calendar.MONTH);
-            maxDay = c.get(Calendar.DAY_OF_MONTH);
+            maxDay=c.get(Calendar.DAY_OF_MONTH);
         }
+    }
+
+    public void setMinDate(long mindate){
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTimeInMillis(mindate);
+        minYear=calendar.get(Calendar.YEAR);
+        minMonth=calendar.get(Calendar.MONTH);
+        minDay=calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @Override
@@ -36,7 +48,7 @@ public class CustomDatePickerDialog extends DatePickerDialog {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             super.onDateChanged(view, year, monthOfYear, dayOfMonth);
         } else {
-            if (year > maxYear)
+            if (year == maxYear)
                 view.updateDate(maxYear, maxMonth, maxDay);
 
             if (monthOfYear > maxMonth && year == maxYear)

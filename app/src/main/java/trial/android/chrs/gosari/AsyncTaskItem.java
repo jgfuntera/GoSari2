@@ -1,10 +1,13 @@
 package trial.android.chrs.gosari;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.content.Context;
 
 public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
@@ -72,8 +75,14 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
             }
 
 
+
         } catch (JSONException e) {
             e.printStackTrace();
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            Activity activity=new Activity();
+            Toast.makeText(activity.getApplication() ,"NO CONNECTION",Toast.LENGTH_SHORT).show();
 
         }
 
