@@ -55,18 +55,24 @@ public class JSONParser {
                     sb.append(line);
                 }
 
+
+
+
                 json=sb.toString();
 
                 jobj=new JSONObject(json);
 
                 urlConnection.disconnect();
             }
+
         }catch (MalformedURLException e){
             e.printStackTrace();
         }catch(IOException e){
             e.printStackTrace();
         }
         catch (JSONException e){
+            e.printStackTrace();
+        }catch (NullPointerException e){
             e.printStackTrace();
         }
         finally {

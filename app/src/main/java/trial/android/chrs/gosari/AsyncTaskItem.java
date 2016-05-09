@@ -3,6 +3,7 @@ package trial.android.chrs.gosari;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -12,6 +13,7 @@ import android.content.Context;
 public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
     public static int UrlChoice;
+
 
     String url;
 
@@ -24,6 +26,7 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
     protected void onPreExecute() {
         dialog.setTitle("GoSari");
         dialog.setMessage("Loading items, please wait...");
+        dialog.setCancelable(false);
         dialog.show();
     }
 
@@ -49,15 +52,17 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
     @Override
     protected void onPostExecute(JSONObject json) {
 
-        if (UrlChoice == 1) {
+     if(json==null){
+         dialog.setMessage("NO CONNECTION");
 
-            ViewFood.message = json.toString();
-        } else if (UrlChoice == 2) {
-            ViewNonFood.message = json.toString();
-        }
+     }
+        else {
 
-        dialog.dismiss();
-        ViewFood.adapter.notifyDataSetChanged();
+
+         dialog.dismiss();
+         ViewFood.adapter.notifyDataSetChanged();
+     }
+
 
 
         try {
@@ -81,11 +86,12 @@ public class AsyncTaskItem extends AsyncTask<String, String, JSONObject> {
 
         }catch (NullPointerException e){
             e.printStackTrace();
-            Activity activity=new Activity();
-            Toast.makeText(activity.getApplication() ,"NO CONNECTION",Toast.LENGTH_SHORT).show();
+            Log.e("MESSAGE","NO CONNECTION-->");
 
         }
 
 
     }
+
+
 }

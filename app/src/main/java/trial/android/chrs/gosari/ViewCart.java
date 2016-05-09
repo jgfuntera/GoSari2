@@ -1,75 +1,28 @@
 package trial.android.chrs.gosari;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Service;
 import android.app.TimePickerDialog;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.UserHandle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.app.Activity;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 
 public class ViewCart extends AppCompatActivity {
@@ -104,6 +57,11 @@ public class ViewCart extends AppCompatActivity {
     int mYear, mMonth, mDay, mHour, mMinute;
 
     String date = null, time = null;
+
+    DatePickerDialog dpd;
+    DatePicker datePicker;
+    Calendar c;
+    ViewHolder holder=new ViewHolder();
 
 
     @Override
@@ -331,7 +289,9 @@ public class ViewCart extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                ShowDateTimePickerDialog();
+               // ShowDateTimePickerDialog();
+                //testdialog();
+                showDateTimePickerDialog();
 
             }
         });
@@ -342,40 +302,39 @@ public class ViewCart extends AppCompatActivity {
     }
 
     public void ShowDateTimePickerDialog() {
+
         final AlertDialog.Builder alertdialogbuilder = new AlertDialog.Builder(this);
+
         LayoutInflater layoutInflater = LayoutInflater.from(ViewCart.this);
+
         View v = View.inflate(this, R.layout.date_time_picker, null);
+
         alertdialogbuilder.setView(v);
+        holder = new ViewHolder();
 
-
-        final EditText indate = (EditText) v.findViewById(R.id.in_date);
-        final EditText intime = (EditText) v.findViewById(R.id.in_time);
-        final Button btnsetdate = (Button) v.findViewById(R.id.btn_date);
-        final Button btnsettime = (Button) v.findViewById(R.id.btn_time);
+        holder.indate = (EditText) v.findViewById(R.id.in_date);
+        holder.intime = (EditText) v.findViewById(R.id.in_time);
+        holder.btnsetdate = (Button) v.findViewById(R.id.btn_date);
+        holder.btnsettime = (Button) v.findViewById(R.id.btn_time);
 
         alertdialogbuilder.setTitle("Set date and time to deliver items");
+
         alertdialogbuilder.setMessage("Item: " + item + "\n" + "Count: " + itemcount + "\n" + "Price: " + itemprice);
 
-        btnsetdate.setOnClickListener(new View.OnClickListener() {
+
+         holder.btnsetdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              /*final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
-                Log.e("MESSAGE:","ERROR STARTS HERE-->testdialog();");
-                testdialog();
-                indate.setText(date);*/
-                testdialog();
 
+               // testdialog();
 
-
-
+                holder.indate.setText(date);
 
             }
         });
 
-        btnsettime.setOnClickListener(new View.OnClickListener() {
+
+        holder.btnsettime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
@@ -384,7 +343,7 @@ public class ViewCart extends AppCompatActivity {
                 mMinute = c.get(Calendar.MINUTE);
                 Log.e("MESSAGE: ", "LAUNCHING DATE TIME");
                 showtimepicker();
-                intime.setText(time);
+               // intime.setText(time);
 
 
             }
@@ -432,38 +391,106 @@ public class ViewCart extends AppCompatActivity {
 
     public void testdialog() {
 
-        Calendar c = Calendar.getInstance();
+
+        c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
+        datePicker=new DatePicker(this);
+        c.add(Calendar.DAY_OF_MONTH,14);
+        long maxDate=c.getTimeInMillis();
+        datePicker.setMaxDate(maxDate);
+        datePicker.setMinDate(System.currentTimeMillis()-10000);
+        ;
+        DatePickerDialog dpd = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
 
-        final DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        holder=new ViewHolder();
+
+                       date=(dayOfMonth + "/"
+                                + (monthOfYear + 1) + "/" + year);
+
+                    }
+                }, mYear, mMonth, mDay);
+
+
+
+        dpd.show();
+
+        }
+
+    public void showDateTimePickerDialog() {
+
+
+        final Dialog dialog = new Dialog(this);
+
+        dialog.setContentView(R.layout.date_time_layout);
+
+        dialog.setTitle("Set Schedule Call");
+
+        dialog.show();
+
+        Button btnCancel = (Button)dialog.findViewById(R.id.timebutton);
+        Button btnSet = (Button)dialog.findViewById(R.id.datebutton);
+
+        final DatePicker dp = (DatePicker)dialog.findViewById(R.id.datePicker);
+        final TimePicker tp = (TimePicker)dialog.findViewById(R.id.timePicker);
+
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                dialog.dismiss();
             }
-        },mYear, mMonth, mDay);
+        });
 
-        DatePicker datePicker = datePickerDialog.getDatePicker();
+        btnSet.setOnClickListener(new View.OnClickListener() {
 
-        c.add(Calendar.MONTH, +1);
-        c.add(Calendar.DAY_OF_WEEK,-17);
-        long oneMonthAhead = c.getTimeInMillis();
-        datePicker.setMaxDate(oneMonthAhead);
-        datePicker.setMinDate(System.currentTimeMillis() - 1000);
-        datePickerDialog.show();
+            @Override
+            public void onClick(View arg0) {
+                String am_pm = "";
+                // TODO Auto-generated method stub
+                int m = dp.getMonth()+1;
+                int d = dp.getDayOfMonth();
+                int y = dp.getYear();
 
+                int h = tp.getCurrentHour();
+                int min = tp.getCurrentMinute();
+
+                String strm = String.valueOf(min);
+
+                if(strm.length()==1){
+                    strm = "0"+strm;
+                }
+                if(h>12){
+                    am_pm = "PM";
+                    h = h-12;
+                }else{
+                    am_pm = "AM";
+                }
+
+                date = m+"/"+d+"/"+y+" "+h+":"+strm+":00 "+am_pm;
+                time = h+":"+strm+" "+am_pm;
+
+                System.out.println("Date: " + date +" Time: "+ time);
+
+                dialog.dismiss();
+            }
+        });
     }
 
-}
+    public static class ViewHolder{
+        EditText indate ;
+        EditText intime ;
+        Button btnsetdate ;
+        Button btnsettime;
+         }
 
 
-
-
-
-
-
-
-
+    }

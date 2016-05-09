@@ -34,6 +34,7 @@ public class ViewFood extends AppCompatActivity {
 
         AsyncTaskItem.UrlChoice=1;
 
+
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
         ViewCart=(Button)findViewById(R.id.btnCart);
